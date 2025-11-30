@@ -171,13 +171,13 @@ const EmployeeList = () => {
               component="h1"
               sx={{ 
                 fontWeight: 700,
-                color: 'text.primary',
+                color: '#8F944C',
                 mb: 0.5,
               }}
             >
               Employee List
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" sx={{ color: '#8096AD' }}>
               Manage your employee database
             </Typography>
           </Box>
@@ -271,7 +271,7 @@ const EmployeeList = () => {
                             width: 40, 
                             height: 40,
                             border: '2px solid',
-                            borderColor: 'primary.light',
+                            borderColor: '#CFAA7D',
                           }}
                         >
                           {employee.firstName?.[0]}{employee.lastName?.[0]}
@@ -288,7 +288,7 @@ const EmployeeList = () => {
                             px: 1.5,
                             py: 0.5,
                             borderRadius: 1,
-                            bgcolor: 'primary.light',
+                            bgcolor: '#8F944C',
                             color: 'white',
                             fontSize: '0.75rem',
                             fontWeight: 600,
@@ -297,19 +297,34 @@ const EmployeeList = () => {
                           {employee.department}
                         </Box>
                       </TableCell>
-                      <TableCell>{employee.position}</TableCell>
-                      <TableCell sx={{ fontWeight: 600, color: 'success.main' }}>
+                      <TableCell>
+                        <Box
+                          component="span"
+                          sx={{
+                            px: 1.5,
+                            py: 0.5,
+                            borderRadius: 1,
+                            bgcolor: '#CC7C72',
+                            color: 'white',
+                            fontSize: '0.75rem',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {employee.position}
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={{ fontWeight: 600, color: '#B9AF5F' }}>
                         ${employee.salary?.toLocaleString()}
                       </TableCell>
                       <TableCell align="center">
                         <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'center' }}>
                           <IconButton
-                            color="primary"
                             onClick={() => navigate(`/employees/view/${employee._id}`)}
                             size="small"
                             sx={{
+                              color: '#8096AD',
                               '&:hover': {
-                                bgcolor: 'primary.light',
+                                bgcolor: '#8096AD',
                                 color: 'white',
                               },
                             }}
@@ -317,12 +332,12 @@ const EmployeeList = () => {
                             <ViewIcon fontSize="small" />
                           </IconButton>
                           <IconButton
-                            color="secondary"
                             onClick={() => navigate(`/employees/edit/${employee._id}`)}
                             size="small"
                             sx={{
+                              color: '#B9AF5F',
                               '&:hover': {
-                                bgcolor: 'secondary.light',
+                                bgcolor: '#B9AF5F',
                                 color: 'white',
                               },
                             }}

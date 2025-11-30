@@ -121,7 +121,14 @@ const ViewEmployee = () => {
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 4 }}>
           <Avatar
             src={getImageUrl(employee.profilePicture)}
-            sx={{ width: 150, height: 150, mb: 2 }}
+            sx={{ 
+              width: 150, 
+              height: 150, 
+              mb: 2,
+              border: '4px solid',
+              borderColor: '#8F944C',
+              bgcolor: '#B9AF5F'
+            }}
           >
             {employee.firstName?.[0]}{employee.lastName?.[0]}
           </Avatar>
@@ -138,19 +145,24 @@ const ViewEmployee = () => {
             <Card 
               variant="outlined"
               sx={{
+                borderLeft: '4px solid #8096AD',
                 transition: 'all 0.2s',
                 '&:hover': {
-                  boxShadow: 2,
+                  boxShadow: 3,
                   transform: 'translateY(-2px)',
+                  borderLeftWidth: '6px',
                 },
               }}
             >
               <CardContent>
                 <Typography 
                   variant="subtitle2" 
-                  color="text.secondary" 
+                  sx={{ 
+                    color: '#8096AD',
+                    fontWeight: 600,
+                    mb: 1
+                  }}
                   gutterBottom
-                  sx={{ fontWeight: 600 }}
                 >
                   Email
                 </Typography>
@@ -161,9 +173,28 @@ const ViewEmployee = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card variant="outlined">
+            <Card 
+              variant="outlined"
+              sx={{
+                borderLeft: '4px solid #CC7C72',
+                transition: 'all 0.2s',
+                '&:hover': {
+                  boxShadow: 3,
+                  transform: 'translateY(-2px)',
+                  borderLeftWidth: '6px',
+                },
+              }}
+            >
               <CardContent>
-                <Typography variant="subtitle2" color="textSecondary" gutterBottom>
+                <Typography 
+                  variant="subtitle2" 
+                  sx={{ 
+                    color: '#CC7C72',
+                    fontWeight: 600,
+                    mb: 1
+                  }}
+                  gutterBottom
+                >
                   Phone Number
                 </Typography>
                 <Typography variant="body1">{employee.phoneNumber}</Typography>
@@ -171,9 +202,28 @@ const ViewEmployee = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card variant="outlined">
+            <Card 
+              variant="outlined"
+              sx={{
+                borderLeft: '4px solid #8F944C',
+                transition: 'all 0.2s',
+                '&:hover': {
+                  boxShadow: 3,
+                  transform: 'translateY(-2px)',
+                  borderLeftWidth: '6px',
+                },
+              }}
+            >
               <CardContent>
-                <Typography variant="subtitle2" color="textSecondary" gutterBottom>
+                <Typography 
+                  variant="subtitle2" 
+                  sx={{ 
+                    color: '#8F944C',
+                    fontWeight: 600,
+                    mb: 1
+                  }}
+                  gutterBottom
+                >
                   Department
                 </Typography>
                 <Typography variant="body1">{employee.department}</Typography>
@@ -181,9 +231,28 @@ const ViewEmployee = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card variant="outlined">
+            <Card 
+              variant="outlined"
+              sx={{
+                borderLeft: '4px solid #B9AF5F',
+                transition: 'all 0.2s',
+                '&:hover': {
+                  boxShadow: 3,
+                  transform: 'translateY(-2px)',
+                  borderLeftWidth: '6px',
+                },
+              }}
+            >
               <CardContent>
-                <Typography variant="subtitle2" color="textSecondary" gutterBottom>
+                <Typography 
+                  variant="subtitle2" 
+                  sx={{ 
+                    color: '#B9AF5F',
+                    fontWeight: 600,
+                    mb: 1
+                  }}
+                  gutterBottom
+                >
                   Position
                 </Typography>
                 <Typography variant="body1">{employee.position}</Typography>
@@ -191,21 +260,59 @@ const ViewEmployee = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card variant="outlined">
+            <Card 
+              variant="outlined"
+              sx={{
+                borderLeft: '4px solid #CFAA7D',
+                transition: 'all 0.2s',
+                '&:hover': {
+                  boxShadow: 3,
+                  transform: 'translateY(-2px)',
+                  borderLeftWidth: '6px',
+                },
+              }}
+            >
               <CardContent>
-                <Typography variant="subtitle2" color="textSecondary" gutterBottom>
+                <Typography 
+                  variant="subtitle2" 
+                  sx={{ 
+                    color: '#CFAA7D',
+                    fontWeight: 600,
+                    mb: 1
+                  }}
+                  gutterBottom
+                >
                   Salary
                 </Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ fontWeight: 600, color: '#B9AF5F' }}>
                   ${employee.salary?.toLocaleString()}
                 </Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card variant="outlined">
+            <Card 
+              variant="outlined"
+              sx={{
+                borderLeft: '4px solid #8096AD',
+                transition: 'all 0.2s',
+                '&:hover': {
+                  boxShadow: 3,
+                  transform: 'translateY(-2px)',
+                  borderLeftWidth: '6px',
+                },
+              }}
+            >
               <CardContent>
-                <Typography variant="subtitle2" color="textSecondary" gutterBottom>
+                <Typography 
+                  variant="subtitle2" 
+                  sx={{ 
+                    color: '#8096AD',
+                    fontWeight: 600,
+                    mb: 1
+                  }}
+                  gutterBottom
+                >
                   Date of Joining
                 </Typography>
                 <Typography variant="body1">

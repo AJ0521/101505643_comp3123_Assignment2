@@ -87,6 +87,7 @@ const Login = () => {
             borderRadius: 3,
             background: 'rgba(255, 255, 255, 0.98)',
             backdropFilter: 'blur(10px)',
+            borderTop: '4px solid #8F944C',
           }}
         >
           <Box sx={{ textAlign: 'center', mb: 3 }}>

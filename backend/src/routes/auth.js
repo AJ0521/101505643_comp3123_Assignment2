@@ -28,14 +28,6 @@ router.post('/signup', [
     .isLength({ min: 6 })
     .withMessage('Password must be at least 6 characters long')
 ], async (req, res) => {
-  // Check MongoDB connection
-  if (mongoose.connection.readyState !== 1) {
-    return res.status(503).json({ 
-      message: 'Database connection error. Please make sure MongoDB is running.',
-      error: 'MongoDB not connected'
-    });
-  }
-
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -76,27 +68,51 @@ router.post('/signup', [
     });
   } catch (error) {
     console.error('Signup error:', error);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    console.error('Error code:', error.code);
+    console.error('MongoDB readyState:', mongoose.connection.readyState);
     
-    // Check if it's a MongoDB connection error
-    if (error.name === 'MongoServerError' || error.message.includes('MongoServerError') || error.message.includes('connect')) {
+    // Only return 503 for actual connection errors, not operational errors
+    if (error.name === 'MongoNetworkError' ||
+        (error.name === 'MongooseError' && error.message.includes('connect')) ||
+        error.message.includes('ECONNREFUSED') ||
+        error.message.includes('connection') && error.message.includes('refused')) {
       return res.status(503).json({ 
         message: 'Database connection error. Please make sure MongoDB is running.',
-        error: 'MongoDB not connected'
+        error: 'MongoDB not connected',
+        readyState: mongoose.connection.readyState,
+        errorName: error.name,
+        errorMessage: error.message
       });
     }
     
     // Check for duplicate key error
-    if (error.code === 11000) {
-      const field = Object.keys(error.keyPattern)[0];
+    if (error.code === 11000 || error.name === 'MongoServerError' && error.code === 11000) {
+      const field = Object.keys(error.keyPattern || {})[0] || 'field';
       return res.status(400).json({ 
         message: `User with this ${field} already exists` 
       });
     }
     
-    // Generic error
+    // Check for validation errors from mongoose
+    if (error.name === 'ValidationError') {
+      const errors = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({ 
+        message: 'Validation failed',
+        errors: errors
+      });
+    }
+    
+    // Generic error - always show error in development
     res.status(500).json({ 
       message: 'Server error during signup',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      error: error.message || 'Internal server error',
+      errorName: error.name,
+      ...(process.env.NODE_ENV === 'development' && { 
+        stack: error.stack,
+        details: error.toString()
+      })
     });
   }
 });
@@ -113,14 +129,6 @@ router.post('/login', [
     .notEmpty()
     .withMessage('Password is required')
 ], async (req, res) => {
-  // Check MongoDB connection
-  if (mongoose.connection.readyState !== 1) {
-    return res.status(503).json({ 
-      message: 'Database connection error. Please make sure MongoDB is running.',
-      error: 'MongoDB not connected'
-    });
-  }
-
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

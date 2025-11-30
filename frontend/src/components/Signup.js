@@ -81,13 +81,25 @@ const Signup = () => {
           errorMsg = 'Database connection error. Please make sure MongoDB is running.';
         } else if (error.response.data.message) {
           errorMsg = error.response.data.message;
-        } else if (error.response.data.errors?.[0]?.msg) {
-          errorMsg = error.response.data.errors[0].msg;
+        } else if (error.response.data.errors) {
+          // Handle array of errors
+          if (Array.isArray(error.response.data.errors)) {
+            errorMsg = error.response.data.errors.map(err => err.msg || err.message || err).join(', ');
+          } else if (error.response.data.errors[0]?.msg) {
+            errorMsg = error.response.data.errors[0].msg;
+          }
         }
       } else if (error.message) {
-        errorMsg = error.message;
+        if (error.message.includes('Network Error') || error.message.includes('ECONNREFUSED')) {
+          errorMsg = 'Cannot connect to server. Please make sure the backend server is running on port 5000.';
+        } else {
+          errorMsg = error.message;
+        }
+      } else if (!error.response) {
+        errorMsg = 'Cannot connect to server. Please make sure the backend server is running.';
       }
       
+      console.error('Signup error:', error);
       setErrorMessage(errorMsg);
     } finally {
       setLoading(false);
@@ -114,6 +126,7 @@ const Signup = () => {
             borderRadius: 3,
             background: 'rgba(255, 255, 255, 0.98)',
             backdropFilter: 'blur(10px)',
+            borderTop: '4px solid #CC7C72',
           }}
         >
           <Box sx={{ textAlign: 'center', mb: 3 }}>

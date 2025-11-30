@@ -196,6 +196,7 @@ const SearchEmployee = () => {
             borderRadius: 2,
             border: '1px solid',
             borderColor: 'divider',
+            borderLeft: '4px solid #CC7C72',
           }}
         >
           <Box sx={{ mb: 3 }}>
@@ -204,12 +205,13 @@ const SearchEmployee = () => {
               component="h1"
               sx={{ 
                 fontWeight: 700,
+                color: '#CC7C72',
                 mb: 1,
               }}
             >
               Search Employees
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" sx={{ color: '#8096AD' }}>
               Search employees by department or position (or both)
             </Typography>
           </Box>
@@ -282,6 +284,7 @@ const SearchEmployee = () => {
               borderRadius: 2,
               border: '1px solid',
               borderColor: 'divider',
+              borderLeft: '4px solid #8096AD',
             }}
           >
             <Box sx={{ mb: 3 }}>

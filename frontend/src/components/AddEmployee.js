@@ -157,6 +157,7 @@ const AddEmployee = () => {
           borderRadius: 2,
           border: '1px solid',
           borderColor: 'divider',
+          borderLeft: '4px solid #8F944C',
         }}
       >
         <Box sx={{ mb: 3 }}>
@@ -170,7 +171,7 @@ const AddEmployee = () => {
           >
             Add New Employee
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: '#8096AD' }}>
             Fill in the details to add a new employee to the system
           </Typography>
         </Box>
@@ -185,7 +186,13 @@ const AddEmployee = () => {
           <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center' }}>
             <Avatar
               src={preview}
-              sx={{ width: 100, height: 100 }}
+              sx={{ 
+                width: 100, 
+                height: 100,
+                border: '3px solid',
+                borderColor: '#CFAA7D',
+                bgcolor: '#B9AF5F'
+              }}
             >
               {formData.firstName?.[0]}{formData.lastName?.[0]}
             </Avatar>

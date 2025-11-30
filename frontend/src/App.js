@@ -27,12 +27,20 @@ const theme = createTheme({
       contrastText: '#ffffff',
     },
     background: {
-      default: '#f8fafc',
+      default: '#f5f7fa',
       paper: '#ffffff',
     },
     text: {
       primary: '#1e293b',
       secondary: '#64748b',
+    },
+    // Custom colors from your palette
+    custom: {
+      beige: '#CFAA7D',
+      oliveYellow: '#B9AF5F',
+      oliveGreen: '#8F944C',
+      coral: '#CC7C72',
+      blueGray: '#8096AD',
     },
   },
   typography: {
@@ -117,10 +125,10 @@ const theme = createTheme({
     MuiTableHead: {
       styleOverrides: {
         root: {
-          backgroundColor: '#f8fafc',
+          backgroundColor: '#8096AD',
           '& .MuiTableCell-head': {
             fontWeight: 600,
-            color: '#1e293b',
+            color: '#ffffff',
           },
         },
       },
@@ -129,6 +137,20 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderBottom: '1px solid #e2e8f0',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderLeft: '4px solid #8F944C',
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontWeight: 600,
         },
       },
     },

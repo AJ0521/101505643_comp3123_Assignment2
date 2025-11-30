@@ -208,6 +208,7 @@ const EditEmployee = () => {
           borderRadius: 2,
           border: '1px solid',
           borderColor: 'divider',
+          borderLeft: '4px solid #B9AF5F',
         }}
       >
         <Box sx={{ mb: 3 }}>
@@ -216,12 +217,13 @@ const EditEmployee = () => {
             component="h1"
             sx={{ 
               fontWeight: 700,
+              color: '#B9AF5F',
               mb: 1,
             }}
           >
             Edit Employee
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: '#8096AD' }}>
             Update employee information
           </Typography>
         </Box>
@@ -236,7 +238,13 @@ const EditEmployee = () => {
           <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center' }}>
             <Avatar
               src={preview || currentPicture}
-              sx={{ width: 100, height: 100 }}
+              sx={{ 
+                width: 100, 
+                height: 100,
+                border: '3px solid',
+                borderColor: '#CFAA7D',
+                bgcolor: '#B9AF5F'
+              }}
             >
               {formData.firstName?.[0]}{formData.lastName?.[0]}
             </Avatar>
