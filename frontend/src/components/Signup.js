@@ -110,43 +110,86 @@ const Signup = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: '#8096AD',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 2,
+        padding: { xs: 2, sm: 3 },
+        position: 'relative',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)',
+          pointerEvents: 'none',
+        },
       }}
     >
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <Paper 
-          elevation={24} 
+          elevation={0}
           sx={{ 
-            padding: { xs: 3, sm: 4 },
+            padding: { xs: 4, sm: 5, md: 6 },
             width: '100%',
-            borderRadius: 3,
+            borderRadius: 4,
             background: 'rgba(255, 255, 255, 0.98)',
-            backdropFilter: 'blur(10px)',
-            borderTop: '4px solid #CC7C72',
+            backdropFilter: 'blur(20px)',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            position: 'relative',
+            overflow: 'hidden',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '4px',
+              background: 'linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #8b5cf6 100%)',
+            },
           }}
         >
-          <Box sx={{ textAlign: 'center', mb: 3 }}>
+          <Box sx={{ textAlign: 'center', mb: 4 }}>
             <Typography 
               component="h1" 
-              variant="h4" 
+              variant="h3" 
               sx={{ 
-                fontWeight: 700,
-                color: '#8F944C',
-                mb: 1,
+                fontWeight: 800,
+                background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                mb: 1.5,
+                letterSpacing: '-0.02em',
               }}
             >
               Create Account
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Sign up to get started
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: 'text.secondary',
+                fontSize: '1rem',
+                fontWeight: 400,
+              }}
+            >
+              Sign up to get started with employee management
             </Typography>
           </Box>
           {errorMessage && (
-            <Alert severity="error" sx={{ mt: 2, mb: 2 }}>
+            <Alert 
+              severity="error" 
+              sx={{ 
+                mb: 3,
+                borderRadius: 2,
+                '& .MuiAlert-icon': {
+                  alignItems: 'center',
+                },
+              }}
+            >
               {errorMessage}
             </Alert>
           )}
@@ -164,6 +207,7 @@ const Signup = () => {
               onChange={handleChange}
               error={!!errors.username}
               helperText={errors.username}
+              sx={{ mb: 2 }}
             />
             <TextField
               margin="normal"
@@ -177,6 +221,7 @@ const Signup = () => {
               onChange={handleChange}
               error={!!errors.email}
               helperText={errors.email}
+              sx={{ mb: 2 }}
             />
             <TextField
               margin="normal"
@@ -191,6 +236,7 @@ const Signup = () => {
               onChange={handleChange}
               error={!!errors.password}
               helperText={errors.password}
+              sx={{ mb: 2 }}
             />
             <TextField
               margin="normal"
@@ -204,6 +250,7 @@ const Signup = () => {
               onChange={handleChange}
               error={!!errors.confirmPassword}
               helperText={errors.confirmPassword}
+              sx={{ mb: 1 }}
             />
             <Button
               type="submit"
@@ -211,24 +258,25 @@ const Signup = () => {
               variant="contained"
               size="large"
               sx={{ 
-                mt: 3, 
-                mb: 2,
+                mt: 4, 
+                mb: 3,
                 py: 1.5,
                 fontSize: '1rem',
                 fontWeight: 600,
+                textTransform: 'none',
               }}
               disabled={loading}
             >
               {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign Up'}
             </Button>
-            <Box textAlign="center" sx={{ mt: 2 }}>
-              <Typography variant="body2" color="text.secondary">
+            <Box textAlign="center">
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Already have an account?{' '}
                 <Link 
                   to="/login" 
                   style={{ 
                     textDecoration: 'none',
-                    color: '#8F944C',
+                    color: '#2563eb',
                     fontWeight: 600,
                   }}
                 >

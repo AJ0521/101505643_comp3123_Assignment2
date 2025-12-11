@@ -94,31 +94,34 @@ const EmployeeList = () => {
         position="static" 
         elevation={0}
         sx={{ 
-          background: '#8F944C',
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+          background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         }}
       >
-        <Toolbar sx={{ py: 1 }}>
+        <Toolbar sx={{ py: 2, px: { xs: 2, sm: 3, md: 4 } }}>
           <Typography 
-            variant="h6" 
+            variant="h5" 
             component="div" 
             sx={{ 
               flexGrow: 1,
-              fontWeight: 700,
-              fontSize: '1.25rem',
+              fontWeight: 800,
+              fontSize: { xs: '1.125rem', sm: '1.25rem', md: '1.5rem' },
+              letterSpacing: '-0.01em',
             }}
           >
             Employee Management System
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 2 } }}>
             <Typography 
               variant="body2" 
               sx={{ 
-                display: { xs: 'none', sm: 'block' },
+                display: { xs: 'none', md: 'block' },
                 fontWeight: 500,
+                color: 'rgba(255, 255, 255, 0.9)',
+                fontSize: '0.9375rem',
               }}
             >
-              Welcome, <strong>{user?.username}</strong>
+              Welcome, <strong style={{ fontWeight: 600 }}>{user?.username}</strong>
             </Typography>
             <Button
               variant="outlined"
@@ -126,11 +129,15 @@ const EmployeeList = () => {
               onClick={() => navigate('/search')}
               sx={{ 
                 color: 'white',
-                borderColor: 'rgba(255, 255, 255, 0.5)',
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+                borderWidth: '1.5px',
+                fontWeight: 600,
                 '&:hover': {
                   borderColor: 'white',
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  bgcolor: 'rgba(255, 255, 255, 0.15)',
+                  transform: 'translateY(-1px)',
                 },
+                transition: 'all 0.2s ease-in-out',
               }}
             >
               Search
@@ -141,11 +148,15 @@ const EmployeeList = () => {
               onClick={handleLogout}
               sx={{ 
                 color: 'white',
-                borderColor: 'rgba(255, 255, 255, 0.5)',
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+                borderWidth: '1.5px',
+                fontWeight: 600,
                 '&:hover': {
                   borderColor: 'white',
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  bgcolor: 'rgba(255, 255, 255, 0.15)',
+                  transform: 'translateY(-1px)',
                 },
+                transition: 'all 0.2s ease-in-out',
               }}
             >
               Logout
@@ -154,31 +165,44 @@ const EmployeeList = () => {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      <Container maxWidth="xl" sx={{ mt: { xs: 3, sm: 4, md: 5 }, mb: 4, px: { xs: 2, sm: 3 } }}>
         <Box 
           sx={{ 
             display: 'flex', 
             justifyContent: 'space-between', 
-            alignItems: 'center',
+            alignItems: { xs: 'flex-start', sm: 'center' },
             mb: 4,
             flexWrap: 'wrap',
-            gap: 2,
+            gap: 3,
+            flexDirection: { xs: 'column', sm: 'row' },
           }}
         >
           <Box>
             <Typography 
-              variant="h4" 
+              variant="h3" 
               component="h1"
               sx={{ 
-                fontWeight: 700,
-                color: '#8F944C',
-                mb: 0.5,
+                fontWeight: 800,
+                background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                mb: 1,
+                letterSpacing: '-0.02em',
+                fontSize: { xs: '1.75rem', sm: '2rem', md: '2.25rem' },
               }}
             >
               Employee List
             </Typography>
-            <Typography variant="body2" sx={{ color: '#8096AD' }}>
-              Manage your employee database
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: 'text.secondary',
+                fontSize: '1rem',
+                fontWeight: 400,
+              }}
+            >
+              Manage your employee database efficiently
             </Typography>
           </Box>
           <Button
@@ -187,8 +211,11 @@ const EmployeeList = () => {
             startIcon={<AddIcon />}
             onClick={() => navigate('/employees/add')}
             sx={{
-              px: 3,
+              px: 4,
               py: 1.5,
+              fontSize: '1rem',
+              fontWeight: 600,
+              borderRadius: 2,
             }}
           >
             Add Employee
@@ -202,18 +229,29 @@ const EmployeeList = () => {
         )}
 
         {loading ? (
-          <Box display="flex" justifyContent="center" p={8}>
-            <CircularProgress size={60} thickness={4} />
+          <Box 
+            display="flex" 
+            flexDirection="column"
+            justifyContent="center" 
+            alignItems="center"
+            p={8}
+            sx={{ gap: 2 }}
+          >
+            <CircularProgress size={60} thickness={4} sx={{ color: 'primary.main' }} />
+            <Typography variant="body2" color="text.secondary">
+              Loading employees...
+            </Typography>
           </Box>
         ) : (
           <TableContainer 
             component={Paper} 
             elevation={0}
             sx={{ 
-              borderRadius: 2,
+              borderRadius: 3,
               overflow: 'hidden',
               border: '1px solid',
               borderColor: 'divider',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
             }}
           >
             <Table>
@@ -268,30 +306,40 @@ const EmployeeList = () => {
                           src={getImageUrl(employee.profilePicture)}
                           alt={`${employee.firstName} ${employee.lastName}`}
                           sx={{ 
-                            width: 40, 
-                            height: 40,
-                            border: '2px solid',
-                            borderColor: '#CFAA7D',
+                            width: 48, 
+                            height: 48,
+                            border: '2.5px solid',
+                            borderColor: 'primary.light',
+                            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
                           }}
                         >
                           {employee.firstName?.[0]}{employee.lastName?.[0]}
                         </Avatar>
                       </TableCell>
-                      <TableCell sx={{ fontWeight: 500 }}>{employee.firstName}</TableCell>
-                      <TableCell sx={{ fontWeight: 500 }}>{employee.lastName}</TableCell>
-                      <TableCell>{employee.email}</TableCell>
-                      <TableCell>{employee.phoneNumber}</TableCell>
+                      <TableCell sx={{ fontWeight: 600, fontSize: '0.9375rem' }}>
+                        {employee.firstName}
+                      </TableCell>
+                      <TableCell sx={{ fontWeight: 600, fontSize: '0.9375rem' }}>
+                        {employee.lastName}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: '0.9375rem', color: 'text.secondary' }}>
+                        {employee.email}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: '0.9375rem' }}>{employee.phoneNumber}</TableCell>
                       <TableCell>
                         <Box
                           component="span"
                           sx={{
-                            px: 1.5,
-                            py: 0.5,
-                            borderRadius: 1,
-                            bgcolor: '#8F944C',
+                            px: 2,
+                            py: 0.75,
+                            borderRadius: 2,
+                            background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)',
                             color: 'white',
                             fontSize: '0.75rem',
-                            fontWeight: 600,
+                            fontWeight: 700,
+                            letterSpacing: '0.02em',
+                            display: 'inline-block',
+                            boxShadow: '0 2px 4px rgba(37, 99, 235, 0.3)',
                           }}
                         >
                           {employee.department}
@@ -301,19 +349,22 @@ const EmployeeList = () => {
                         <Box
                           component="span"
                           sx={{
-                            px: 1.5,
-                            py: 0.5,
-                            borderRadius: 1,
-                            bgcolor: '#CC7C72',
+                            px: 2,
+                            py: 0.75,
+                            borderRadius: 2,
+                            background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
                             color: 'white',
                             fontSize: '0.75rem',
-                            fontWeight: 600,
+                            fontWeight: 700,
+                            letterSpacing: '0.02em',
+                            display: 'inline-block',
+                            boxShadow: '0 2px 4px rgba(139, 92, 246, 0.3)',
                           }}
                         >
                           {employee.position}
                         </Box>
                       </TableCell>
-                      <TableCell sx={{ fontWeight: 600, color: '#B9AF5F' }}>
+                      <TableCell sx={{ fontWeight: 700, color: 'success.main', fontSize: '1rem' }}>
                         ${employee.salary?.toLocaleString()}
                       </TableCell>
                       <TableCell align="center">
@@ -322,11 +373,13 @@ const EmployeeList = () => {
                             onClick={() => navigate(`/employees/view/${employee._id}`)}
                             size="small"
                             sx={{
-                              color: '#8096AD',
+                              color: 'info.main',
                               '&:hover': {
-                                bgcolor: '#8096AD',
+                                bgcolor: 'info.main',
                                 color: 'white',
+                                transform: 'scale(1.1)',
                               },
+                              transition: 'all 0.2s ease-in-out',
                             }}
                           >
                             <ViewIcon fontSize="small" />
@@ -335,25 +388,29 @@ const EmployeeList = () => {
                             onClick={() => navigate(`/employees/edit/${employee._id}`)}
                             size="small"
                             sx={{
-                              color: '#B9AF5F',
+                              color: 'primary.main',
                               '&:hover': {
-                                bgcolor: '#B9AF5F',
+                                bgcolor: 'primary.main',
                                 color: 'white',
+                                transform: 'scale(1.1)',
                               },
+                              transition: 'all 0.2s ease-in-out',
                             }}
                           >
                             <EditIcon fontSize="small" />
                           </IconButton>
                           <IconButton
-                            color="error"
                             onClick={() => handleDelete(employee._id)}
                             disabled={deleteLoading === employee._id}
                             size="small"
                             sx={{
+                              color: 'error.main',
                               '&:hover': {
                                 bgcolor: 'error.main',
                                 color: 'white',
+                                transform: 'scale(1.1)',
                               },
+                              transition: 'all 0.2s ease-in-out',
                             }}
                           >
                             {deleteLoading === employee._id ? (

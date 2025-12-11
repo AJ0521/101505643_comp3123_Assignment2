@@ -204,26 +204,48 @@ const EditEmployee = () => {
       <Paper 
         elevation={0}
         sx={{ 
-          padding: 4,
-          borderRadius: 2,
+          padding: { xs: 3, sm: 4, md: 5 },
+          borderRadius: 3,
           border: '1px solid',
           borderColor: 'divider',
-          borderLeft: '4px solid #B9AF5F',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+          position: 'relative',
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '4px',
+            background: 'linear-gradient(90deg, #8b5cf6 0%, #a78bfa 50%, #2563eb 100%)',
+          },
         }}
       >
-        <Box sx={{ mb: 3 }}>
+        <Box sx={{ mb: 4 }}>
           <Typography 
-            variant="h4" 
+            variant="h3" 
             component="h1"
             sx={{ 
-              fontWeight: 700,
-              color: '#B9AF5F',
-              mb: 1,
+              fontWeight: 800,
+              background: 'linear-gradient(135deg, #8b5cf6 0%, #2563eb 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              mb: 1.5,
+              letterSpacing: '-0.02em',
+              fontSize: { xs: '1.75rem', sm: '2rem', md: '2.25rem' },
             }}
           >
             Edit Employee
           </Typography>
-          <Typography variant="body2" sx={{ color: '#8096AD' }}>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              color: 'text.secondary',
+              fontSize: '1rem',
+            }}
+          >
             Update employee information
           </Typography>
         </Box>
@@ -235,15 +257,27 @@ const EditEmployee = () => {
         )}
 
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
-          <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center' }}>
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              gap: 3, 
+              mb: 4, 
+              alignItems: 'center',
+              flexDirection: { xs: 'column', sm: 'row' },
+              textAlign: { xs: 'center', sm: 'left' },
+            }}
+          >
             <Avatar
               src={preview || currentPicture}
               sx={{ 
-                width: 100, 
-                height: 100,
-                border: '3px solid',
-                borderColor: '#CFAA7D',
-                bgcolor: '#B9AF5F'
+                width: 120, 
+                height: 120,
+                border: '4px solid',
+                borderColor: 'secondary.light',
+                bgcolor: 'secondary.main',
+                boxShadow: '0 4px 12px rgba(100, 116, 139, 0.3)',
+                fontSize: '2.5rem',
+                fontWeight: 700,
               }}
             >
               {formData.firstName?.[0]}{formData.lastName?.[0]}
@@ -252,7 +286,11 @@ const EditEmployee = () => {
               <Button
                 variant="outlined"
                 component="label"
-                sx={{ mb: 1 }}
+                sx={{ 
+                  mb: 1,
+                  fontWeight: 600,
+                  borderWidth: '1.5px',
+                }}
               >
                 {formData.profilePicture ? 'Change Picture' : 'Upload New Picture'}
                 <input
@@ -262,8 +300,16 @@ const EditEmployee = () => {
                   onChange={handleFileChange}
                 />
               </Button>
-              <Typography variant="caption" display="block" color="textSecondary">
-                Max size: 5MB
+              <Typography 
+                variant="caption" 
+                display="block" 
+                sx={{ 
+                  color: 'text.secondary',
+                  fontSize: '0.75rem',
+                  mt: 0.5,
+                }}
+              >
+                Max size: 5MB • JPG, PNG, GIF
               </Typography>
             </Box>
           </Box>
@@ -378,12 +424,17 @@ const EditEmployee = () => {
             />
           </Box>
 
-          <Box sx={{ display: 'flex', gap: 2, mt: 3 }}>
+          <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
             <Button
               type="button"
               variant="outlined"
               onClick={() => navigate('/employees')}
               fullWidth
+              size="large"
+              sx={{
+                fontWeight: 600,
+                borderWidth: '1.5px',
+              }}
             >
               Cancel
             </Button>
@@ -391,9 +442,13 @@ const EditEmployee = () => {
               type="submit"
               variant="contained"
               fullWidth
+              size="large"
               disabled={loading}
+              sx={{
+                fontWeight: 600,
+              }}
             >
-              {loading ? <CircularProgress size={24} /> : 'Update Employee'}
+              {loading ? <CircularProgress size={24} color="inherit" /> : 'Update Employee'}
             </Button>
           </Box>
         </Box>

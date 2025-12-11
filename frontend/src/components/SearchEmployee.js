@@ -120,42 +120,49 @@ const SearchEmployee = () => {
         position="static" 
         elevation={0}
         sx={{ 
-          background: '#8F944C',
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+          background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         }}
       >
-        <Toolbar sx={{ py: 1 }}>
+        <Toolbar sx={{ py: 2, px: { xs: 2, sm: 3, md: 4 } }}>
           <Typography 
-            variant="h6" 
+            variant="h5" 
             component="div" 
             sx={{ 
               flexGrow: 1,
-              fontWeight: 700,
-              fontSize: '1.25rem',
+              fontWeight: 800,
+              fontSize: { xs: '1.125rem', sm: '1.25rem', md: '1.5rem' },
+              letterSpacing: '-0.01em',
             }}
           >
             Employee Search
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 2 } }}>
             <Typography 
               variant="body2" 
               sx={{ 
-                display: { xs: 'none', sm: 'block' },
+                display: { xs: 'none', md: 'block' },
                 fontWeight: 500,
+                color: 'rgba(255, 255, 255, 0.9)',
+                fontSize: '0.9375rem',
               }}
             >
-              Welcome, <strong>{user?.username}</strong>
+              Welcome, <strong style={{ fontWeight: 600 }}>{user?.username}</strong>
             </Typography>
             <Button
               variant="outlined"
               onClick={() => navigate('/employees')}
               sx={{ 
                 color: 'white',
-                borderColor: 'rgba(255, 255, 255, 0.5)',
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+                borderWidth: '1.5px',
+                fontWeight: 600,
                 '&:hover': {
                   borderColor: 'white',
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  bgcolor: 'rgba(255, 255, 255, 0.15)',
+                  transform: 'translateY(-1px)',
                 },
+                transition: 'all 0.2s ease-in-out',
               }}
             >
               Employee List
@@ -166,11 +173,15 @@ const SearchEmployee = () => {
               onClick={handleLogout}
               sx={{ 
                 color: 'white',
-                borderColor: 'rgba(255, 255, 255, 0.5)',
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+                borderWidth: '1.5px',
+                fontWeight: 600,
                 '&:hover': {
                   borderColor: 'white',
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  bgcolor: 'rgba(255, 255, 255, 0.15)',
+                  transform: 'translateY(-1px)',
                 },
+                transition: 'all 0.2s ease-in-out',
               }}
             >
               Logout
@@ -191,27 +202,49 @@ const SearchEmployee = () => {
         <Paper 
           elevation={0}
           sx={{ 
-            padding: 4, 
+            padding: { xs: 3, sm: 4, md: 5 }, 
             mb: 4,
-            borderRadius: 2,
+            borderRadius: 3,
             border: '1px solid',
             borderColor: 'divider',
-            borderLeft: '4px solid #CC7C72',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            position: 'relative',
+            overflow: 'hidden',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '4px',
+              background: 'linear-gradient(90deg, #8b5cf6 0%, #a78bfa 50%, #2563eb 100%)',
+            },
           }}
         >
-          <Box sx={{ mb: 3 }}>
+          <Box sx={{ mb: 4 }}>
             <Typography 
-              variant="h4" 
+              variant="h3" 
               component="h1"
               sx={{ 
-                fontWeight: 700,
-                color: '#CC7C72',
-                mb: 1,
+                fontWeight: 800,
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #2563eb 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                mb: 1.5,
+                letterSpacing: '-0.02em',
+                fontSize: { xs: '1.75rem', sm: '2rem', md: '2.25rem' },
               }}
             >
               Search Employees
             </Typography>
-            <Typography variant="body2" sx={{ color: '#8096AD' }}>
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: 'text.secondary',
+                fontSize: '1rem',
+              }}
+            >
               Search employees by department or position (or both)
             </Typography>
           </Box>

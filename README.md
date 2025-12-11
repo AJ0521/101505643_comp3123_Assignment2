@@ -1,7 +1,7 @@
 # COMP 3123 Assignment 2 - Full Stack Employee Management System
 
-**Student ID:** 101523555
-**Student Name:** Kenneth Shifa
+**Student ID:** 101505643
+**Student Name:** Abrar Junaid Mohammed
 
 ## Project Overview
 
@@ -32,7 +32,7 @@ Full-stack web application for managing employees, built with React (frontend) a
    ```bash
 # Clone repository
    git clone <repository-url>
-   cd 101523555_COMP3123_Assignment2
+   cd 101505643_COMP3123_Assignment2
 
 # Start all services
    docker-compose up
@@ -102,4 +102,4 @@ See `POSTMAN_QUICK_START.md` for detailed instructions.
 
 ## GitHub Repository
 
-**Repository:** `101523555_comp3123_assignment2_reactjs`
+**Repository:** `101505643_comp3123_assignment2_reactjs`
